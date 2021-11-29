@@ -1,0 +1,35 @@
+PAGE LAYOUT
+- app title
+- sidebar for selecting projects  - content of selected projects
+
+PROJECT LAYOUT (project is an object and to-do's are objects also)
+- has title and deadline
+- open it to see what to-do's need to be done, description, their due dates(optional), optional priority(if no input, 
+default is 0), HAVE TO-DO'S ADDED IN AN UNORDERED LIST WHEN PROJECT OPENED
+
+LOGIC
+- upon loading show general project(contains miscellaneous to-do's)
+- one tab on sidebar for projects with deadline of today(need function to get today's date)
+- one tab for display all projects(when project is clicked on, show to-do's contained within)
+- one tab on sidebar for sorting projects by priority(higher number at top)
+- one tab for sorting by deadline
+
+- can delete individual to-do's and projects(icon to click on, alerts user, asks for permission with prompt)
+
+
+upon loading check local storage,
+if it has contents
+look for general project,
+    load it and display, load other projects
+no general project, load other projects, display empty general project
+
+add new project(button)
+prompt for title and deadline
+display new project to input to-do's
+
+add to-do
+prompt for description, deadline, and priority
+
+!!!// HAVE main.js handle the DOM injections, and the other modules will handle data manipulation, main.js
+will handle the displaying of the data the other modules get and retrieve the data
+

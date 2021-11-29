@@ -1,0 +1,27 @@
+#appName {
+    text-align: center;
+}
+
+#mainContent {
+    display: flex;
+}
+
+#sidebar {
+    display: flex;
+    flex-direction: column;
+}
+
+#projects {
+    display: flex;
+    flex-direction: column;
+}
+
+#form {
+    display: flex;
+}
+
+#projectDetails {
+    width: 300px;
+    display: flex;
+    justify-content: space-between;
+}

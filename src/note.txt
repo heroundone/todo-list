@@ -1,0 +1,6 @@
+split up event listeners file into 
+    one for todo items and adding them
+    one for projects and adding them
+
+upon successful submission
+ add todo to array, delete form, append todo item to list as a list item

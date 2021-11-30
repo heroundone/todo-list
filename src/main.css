@@ -16,12 +16,44 @@
     flex-direction: column;
 }
 
-#form {
+.form {
     display: flex;
 }
 
-#projectDetails {
+.spanDiv {
     width: 300px;
     display: flex;
     justify-content: space-between;
+}
+
+.description {
+color: black;
+}
+
+.deadline {
+color: black;
+}
+
+.priority {
+color: black;
+}
+
+.submit {
+color: black;
+}
+
+.spanDiv {
+color: black;
+}
+
+.todosDiv {
+color: black;
+}
+
+.todoList {
+color: black;
+}
+
+.todoButton {
+ color: black;   
 }

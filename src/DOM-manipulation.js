@@ -30,7 +30,7 @@ function createToDoForm(e) {
     // each project will have a 'add new todo button' when clicked on
     // get id of project(which will equal key), get id of button's parent's parent node
     // call createToDo(), make sure to pass in the key, so that the project and todo's are linked
-}
+};
 
 function displayToDoForm(description, deadline, priority, submitButton, key) {
 
@@ -44,15 +44,15 @@ function displayToDoForm(description, deadline, priority, submitButton, key) {
     todoInfo.append(description, deadline, priority)
     form.append(todoInfo, submitButton);
 
-}
+};
 
 function removeToDoForm(key) {
     // obtain the add todo form element
     let form = document.querySelector(`#${key} .form`);
     while(form.firstChild) {
         form.removeChild(form.firstChild);
-    }
-}
+    };
+};
 
 function addToProject(newToDo) {
     // create a new list item for the unordered todo list
@@ -78,17 +78,17 @@ function addToProject(newToDo) {
     // append item to list
     console.log(item);
     list.appendChild(item);
-}
+};
 
-// create html elements for displaying the general project
-function createGeneralHtml(general) {
+// create html elements for displaying the project
+function createProjectHtml(project) {
     let projectDiv = document.createElement('div');
-    setID(projectDiv, general.key);
+    setID(projectDiv, project.key);
     projectDiv.setAttribute('class', 'project');
 
     // span elements to contain project title and deadline
-    let titleSpan = createSpan(general.title);
-    let deadlineSpan = createSpan(general.deadline);
+    let titleSpan = createSpan(project.title);
+    let deadlineSpan = createSpan(project.deadline);
 
     // div for the span elements, for flexbox styling
     let spanDiv = document.createElement('div');
@@ -108,12 +108,12 @@ function createGeneralHtml(general) {
     todoButton.textContent = 'Add New ToDo Item';
     todoFormEventListener(todoButton);
 
-    displayGeneralProject(projectDiv, spanDiv, titleSpan, deadlineSpan, todosDiv, todoList, formDiv, todoButton);
+    displayProject(projectDiv, spanDiv, titleSpan, deadlineSpan, todosDiv, todoList, formDiv, todoButton);
 
 };
 
 // actually appends the javascript generated html elements
-function displayGeneralProject(projectDiv, spanDiv, titleSpan, deadlineSpan, todosDiv, todoList, formDiv, todoButton) {
+function displayProject(projectDiv, spanDiv, titleSpan, deadlineSpan, todosDiv, todoList, formDiv, todoButton) {
     // what we will append the document fragment to
     let projects = document.getElementById('projects');
 
@@ -128,23 +128,32 @@ function displayGeneralProject(projectDiv, spanDiv, titleSpan, deadlineSpan, tod
     // append doc fragment to the proper document
     projects.appendChild(docFrag);
 
-}
+};
+
+function removeProjectForm() {
+    // get new project form element
+    const newProjectForm = document.getElementById('newProjectForm');
+    while(newProjectForm.firstChild) {
+        newProjectForm.removeChild(newProjectForm.firstChild);
+    };
+    newProjectForm.remove();
+};
 
 function setID(element, id) {
     element.setAttribute('id', id);
-}
+};
 
 function createSpan(text) {
     let span = document.createElement('span');
     span.textContent = text;
     return span;
-}
+};
 
 // key refers to the hash generated for each project, a unique id
 function getKey(e) {
     let key = e.target.parentElement.parentElement.id;
     return key;
-}
+};
 
 
-export {getKey, setID, displayGeneralProject, createGeneralHtml, createToDoForm,  displayToDoForm, createSpan, addToProject, removeToDoForm}
+export {getKey, setID, displayProject, createProjectHtml, removeProjectForm, createToDoForm,  displayToDoForm, createSpan, addToProject, removeToDoForm}

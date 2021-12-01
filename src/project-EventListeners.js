@@ -1,4 +1,6 @@
+import {createProjectHtml, removeProjectForm} from './DOM-manipulation.js';
 import {checkTextContent, checkDeadline} from './todo-EventListeners.js';
+import {createNewProject} from './createProjects.js';
 
 
 // upon clicking the 'add a project' button, a form is generated below the title of the page
@@ -55,7 +57,11 @@ function submitNewProject(title, deadline) {
             alert('Please make sure your date entry matches the expected formatting.')
             return;
         }
-        createNewProject(titleText, deadlineText);
+
+        // create a new project, remove new project form, and display the new project on the page
+        let project = createNewProject(titleText, deadlineText);
+        removeProjectForm();
+        createProjectHtml(project);
     });
 };
 

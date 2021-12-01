@@ -84,6 +84,7 @@ function addToProject(newToDo) {
 function createGeneralHtml(general) {
     let projectDiv = document.createElement('div');
     setID(projectDiv, general.key);
+    projectDiv.setAttribute('class', 'project');
 
     // span elements to contain project title and deadline
     let titleSpan = createSpan(general.title);

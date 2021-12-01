@@ -1,3 +1,7 @@
+* {
+    box-sizing: border-box;
+}
+
 #appName {
     text-align: center;
 }
@@ -9,11 +13,19 @@
 #sidebar {
     display: flex;
     flex-direction: column;
+    margin-right: 10px;
 }
 
 #projects {
     display: flex;
     flex-direction: column;
+}
+
+#newProjectForm {
+    display: flex;
+    width: 500px;
+    justify-content: center;
+    margin-bottom: 5px;
 }
 
 .form {
@@ -56,6 +68,12 @@ color: black;
 
 .todoButton {
  color: black;   
+}
+
+.project {
+    border: solid grey 1px;
+    padding: 5px;
+    margin-bottom: 5px;
 }
 
 li {

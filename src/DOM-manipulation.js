@@ -46,10 +46,39 @@ function displayToDoForm(description, deadline, priority, submitButton, key) {
 
 }
 
-function addToProject() {
-
+function removeToDoForm(key) {
+    // obtain the add todo form element
+    let form = document.querySelector(`#${key} .form`);
+    while(form.firstChild) {
+        form.removeChild(form.firstChild);
+    }
 }
 
+function addToProject(newToDo) {
+    // create a new list item for the unordered todo list
+    let item = document.createElement('li');
+
+    // retrieve the 'ul' to append item to
+    let list = document.querySelector(`#${newToDo.key} .todoList`);
+    console.log(newToDo.key);
+    console.log(list);
+
+    // add todo info to item, create div to do so
+    let todoInfo = document.createElement('div');
+
+    for (const key in newToDo) {
+        if (key !== 'key') {
+            let span = document.createElement('span');
+            span.textContent = newToDo[key];
+            console.log(span);
+            item.appendChild(span);
+        };
+    };
+
+    // append item to list
+    console.log(item);
+    list.appendChild(item);
+}
 
 // create html elements for displaying the general project
 function createGeneralHtml(general) {
@@ -110,10 +139,11 @@ function createSpan(text) {
     return span;
 }
 
+// key refers to the hash generated for each project, a unique id
 function getKey(e) {
     let key = e.target.parentElement.parentElement.id;
     return key;
 }
 
 
-export {getKey, setID, displayGeneralProject, createGeneralHtml, createToDoForm,  displayToDoForm, createSpan,}
+export {getKey, setID, displayGeneralProject, createGeneralHtml, createToDoForm,  displayToDoForm, createSpan, addToProject, removeToDoForm}

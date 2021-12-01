@@ -57,3 +57,9 @@ color: black;
 .todoButton {
  color: black;   
 }
+
+li {
+    display: flex;
+    width: 200px;
+    justify-content: space-between;
+}

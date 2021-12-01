@@ -1,6 +1,6 @@
 import {getKey} from './DOM-manipulation.js';
 import {createToDo} from './createToDos.js';
-import {createToDoForm, displayToDoForm} from './DOM-manipulation.js';
+import {createToDoForm, addToProject, removeToDoForm} from './DOM-manipulation.js';
 
 // triggers when submit button within 'add new to-do' form is clicked
 function addToDoEventListener(submitButton) {
@@ -26,8 +26,10 @@ function addToDoEventListener(submitButton) {
             return;
         };
 
+        // create a new todo object, add it to the project to be displayed, delete the form
         let newToDo = createToDo(description, deadline, priority, key);
-        addToProject(newToDo)
+        removeToDoForm(key);
+        addToProject(newToDo);
     });
 };
 

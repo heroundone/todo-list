@@ -18,13 +18,13 @@ class project {
 class todo {
     constructor(description, deadline, priority, key) {
         this.description = description;
-        if(deadline = '') {
+        if(deadline === '') {
             this.deadline = 'n/a';
         }
         else {
             this.deadline = deadline;
         }
-        if(priority = '') {
+        if(priority === '') {
             this.priority = '0';
         }
         else {

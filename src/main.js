@@ -7,7 +7,8 @@ import { projects, todos } from './modules.js';
 import { createGeneralProject, createNewProject } from './createProjects.js';
 
 
-// project and 
+// main.js will handle initial load of page, and check local storage, if local storage is populated then projects and todos 
+// will be appended to the page
 
 // check if local storage contains projects or to-do's
 if(storage.checkLocalStorage()) {

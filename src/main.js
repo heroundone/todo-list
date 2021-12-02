@@ -4,7 +4,7 @@ let hash = require('hash.js');
 import * as storage from './local-storage.js';
 import {createProjectHtml} from './DOM-manipulation.js'
 import {projects, todos} from './modules.js';
-import {createGeneralProject, createNewProject} from './createProjects.js';
+import {createNewProject} from './createProjects.js';
 import {addProjectEventListener} from './project-EventListeners.js'
 
 

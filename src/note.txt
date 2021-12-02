@@ -1,6 +1,10 @@
-split up event listeners file into 
-    one for todo items and adding them
-    one for projects and adding them
+when clicking on 'add project' and 'add todo' check if the respective forms already exists
+if (form exists)
+    then return
+else
+    continue
 
-upon successful submission
- add todo to array, delete form, append todo item to list as a list item
+
+based on priority, projects have different border colors
+
+checklist for todo items. button or div that when clicked is filled with an x for text content, or checkmark image

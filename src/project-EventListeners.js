@@ -7,6 +7,11 @@ import {createNewProject} from './createProjects.js';
 function addProjectEventListener() {
     const addProjectButton = document.getElementById('addproject');
     addProjectButton.addEventListener('click', () => {
+        // check if the form is already currently displayed
+        if(document.getElementById('newProjectForm')) {
+            return;
+        }
+
         // need space to append form to, form will go under the header of the page
         const form = document.createElement('div');
         form.setAttribute('id', 'newProjectForm')

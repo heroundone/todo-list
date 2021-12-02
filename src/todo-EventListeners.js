@@ -36,6 +36,14 @@ function addToDoEventListener(submitButton) {
 // triggered when 'add new to-do' button is clicked
 function todoFormEventListener(todoButton) {
     todoButton.addEventListener('click', (e) => {
+        // first check if the form is already displayed, if so do not add another form to it
+        let key = getKey(e);
+        let form = document.querySelector(`#${key} .form`);
+        if(form.firstChild != null) {
+            return;
+        }
+
+        // if it is not displayed already go ahead and display the form
         createToDoForm(e);
     });
 };

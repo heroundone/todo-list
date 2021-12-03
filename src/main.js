@@ -13,7 +13,10 @@ import {addProjectEventListener} from './project-EventListeners.js'
 
 // check if local storage contains projects or to-do's
 if(storage.checkLocalStorage()) {
-
+    storage.extractArraysLocalStorage();
+    console.log(todos.todoArray);
+    console.log(projects.projectsArray);
+    localStorage.clear();
 }
 else {
     // create a project object for general tasks

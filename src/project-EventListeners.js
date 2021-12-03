@@ -1,6 +1,7 @@
 import {createProjectHtml, removeProjectForm} from './DOM-manipulation.js';
 import {checkTextContent, checkDeadline} from './todo-EventListeners.js';
 import {createNewProject} from './createProjects.js';
+import {addProjectToLocalStorage} from './local-storage.js';
 
 
 // upon clicking the 'add a project' button, a form is generated below the title of the page
@@ -43,7 +44,6 @@ function addProjectEventListener() {
 
 function submitNewProject(title, deadline) {
     let submitButton = document.getElementById('submitNewProject');
-    console.log(submitButton);
     submitButton.addEventListener('click', () => {
 
         // get user's input in title and deadline
@@ -64,9 +64,14 @@ function submitNewProject(title, deadline) {
         }
 
         // create a new project, remove new project form, and display the new project on the page
-        let project = createNewProject(titleText, deadlineText);
+        
+        let titleForHash = titleText.replace(/\s/g, "");
+        let project = createNewProject(titleText, deadlineText, titleForHash);
+        
+        
         removeProjectForm();
         createProjectHtml(project);
+        addProjectToLocalStorage();
     });
 };
 

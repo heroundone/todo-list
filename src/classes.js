@@ -8,10 +8,10 @@ let hash = require('hash.js');
 
   
 class project {
-    constructor(title, deadline) {
+    constructor(title, deadline, titleForHash) {
         this.title = title;
         this.deadline = deadline;
-        this.key = hash.sha256().update(title).digest('hex');
+        this.key = hash.sha256().update(titleForHash).digest('hex');
     };
 };
 

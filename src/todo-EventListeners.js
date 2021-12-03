@@ -1,6 +1,7 @@
 import {getKey} from './DOM-manipulation.js';
 import {createToDo} from './createToDos.js';
 import {createToDoForm, addToProject, removeToDoForm} from './DOM-manipulation.js';
+import {addToDoToLocalStorage} from './local-storage.js';
 
 // triggers when submit button within 'add new to-do' form is clicked
 function addToDoEventListener(submitButton) {
@@ -8,12 +9,10 @@ function addToDoEventListener(submitButton) {
     submitButton.addEventListener('click', (e) => {
         let key = e.target.parentElement.parentElement.parentElement.id;
         let description = document.querySelector(`#${key} .description`).value;
-        console.log(description);
         if (!(checkTextContent(description))) {
             return;
         };
         let deadline = document.querySelector(`[id=${CSS.escape(key)}] .deadline`).value;
-        console.log(deadline);
         if (!(checkTextContent(deadline))) {
             return;
         };
@@ -30,6 +29,7 @@ function addToDoEventListener(submitButton) {
         let newToDo = createToDo(description, deadline, priority, key);
         removeToDoForm(key);
         addToProject(newToDo);
+        addToDoToLocalStorage();
     });
 };
 

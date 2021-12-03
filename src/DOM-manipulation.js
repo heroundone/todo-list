@@ -60,8 +60,6 @@ function addToProject(newToDo) {
 
     // retrieve the 'ul' to append item to
     let list = document.querySelector(`#${newToDo.key} .todoList`);
-    console.log(newToDo.key);
-    console.log(list);
 
     // add todo info to item, create div to do so
     let todoInfo = document.createElement('div');
@@ -70,13 +68,11 @@ function addToProject(newToDo) {
         if (key !== 'key') {
             let span = document.createElement('span');
             span.textContent = newToDo[key];
-            console.log(span);
             item.appendChild(span);
         };
     };
 
     // append item to list
-    console.log(item);
     list.appendChild(item);
 };
 

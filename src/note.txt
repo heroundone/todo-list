@@ -1,7 +1,6 @@
-cancel add project form
-cancel add todo form
-populate projects and todos upon load
 
+remove project and remove todo
+expand and hide project details(todos will be hidden unless expand button is clicked)
 
 based on priority, projects have different border colors
 

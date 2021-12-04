@@ -1,6 +1,8 @@
-import {addToDoEventListener, todoFormEventListener} from './todo-EventListeners.js';
+import {addToDoEventListener, todoFormEventListener, cancelToDoForm} from './todo-EventListeners.js';
 
 function createToDoForm(e) {
+    
+    let key = getKey(e);
 
     let descriptionInput = document.createElement('textarea');
     descriptionInput.setAttribute('rows', '4');
@@ -21,9 +23,15 @@ function createToDoForm(e) {
     addToDoEventListener(submitButton);
     submitButton.setAttribute('class', 'submit');
 
-    let key = getKey(e);
+    let cancelFormButton = document.createElement('button');
+    cancelFormButton.textContent = 'Cancel';
+    cancelToDoForm(cancelFormButton);
+    cancelFormButton.setAttribute('class', 'cancel');
 
-    displayToDoForm(descriptionInput, deadlineInput, priorityInput, submitButton, key);
+
+
+
+    displayToDoForm(descriptionInput, deadlineInput, priorityInput, submitButton, cancelFormButton, key);
     
     // create form to fill out
     // extract data from form
@@ -32,23 +40,23 @@ function createToDoForm(e) {
     // call createToDo(), make sure to pass in the key, so that the project and todo's are linked
 };
 
-function displayToDoForm(description, deadline, priority, submitButton, key) {
+function displayToDoForm(description, deadline, priority, submitButton, cancelFormButton, key) {
 
     // contains the entire add new to-do form
-    let form = document.querySelector(`#${key} .form`);
+    let form = document.querySelector(`[data-key=${key}] .form`);
 
     // contains all the inputs to be filled in
     let todoInfo = document.createElement('div');
 
     // putting everything together
     todoInfo.append(description, deadline, priority)
-    form.append(todoInfo, submitButton);
+    form.append(todoInfo, submitButton, cancelFormButton);
 
 };
 
 function removeToDoForm(key) {
     // obtain the add todo form element
-    let form = document.querySelector(`#${key} .form`);
+    let form = document.querySelector(`[data-key=${key}] .form`);
     while(form.firstChild) {
         form.removeChild(form.firstChild);
     };
@@ -59,7 +67,7 @@ function addToProject(newToDo) {
     let item = document.createElement('li');
 
     // retrieve the 'ul' to append item to
-    let list = document.querySelector(`#${newToDo.key} .todoList`);
+    let list = document.querySelector(`[data-key=${newToDo.key}] .todoList`);
 
     // add todo info to item, create div to do so
     let todoInfo = document.createElement('div');
@@ -79,7 +87,7 @@ function addToProject(newToDo) {
 // create html elements for displaying the project
 function createProjectHtml(project) {
     let projectDiv = document.createElement('div');
-    setID(projectDiv, project.key);
+    projectDiv.setAttribute('data-key', project.key)
     projectDiv.setAttribute('class', 'project');
 
     // span elements to contain project title and deadline
@@ -103,6 +111,7 @@ function createProjectHtml(project) {
     todoButton.setAttribute('class', 'todoButton');
     todoButton.textContent = 'Add New ToDo Item';
     todoFormEventListener(todoButton);
+    
 
     displayProject(projectDiv, spanDiv, titleSpan, deadlineSpan, todosDiv, todoList, formDiv, todoButton);
 
@@ -147,7 +156,7 @@ function createSpan(text) {
 
 // key refers to the hash generated for each project, a unique id
 function getKey(e) {
-    let key = e.target.parentElement.parentElement.id;
+    let key = e.target.parentElement.parentElement.getAttribute('data-key');
     return key;
 };
 

@@ -25,7 +25,7 @@ function extractArraysLocalStorage() {
     if (currentProjects !== null) {
         console.log(currentProjects);
         for(let i = currentProjects.length - 1; i >= 0; i--) {
-            let project = currentProjects[0];
+            let project = currentProjects[i];
             projects.projectsArray.unshift(project);
         };
     };

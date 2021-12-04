@@ -1,3 +1,4 @@
+let hash = require('hash.js');
 import {createProjectHtml, removeProjectForm} from './DOM-manipulation.js';
 import {checkTextContent, checkDeadline} from './todo-EventListeners.js';
 import {createNewProject} from './createProjects.js';
@@ -29,9 +30,15 @@ function addProjectEventListener() {
         let submitButton = document.createElement('button');
         submitButton.setAttribute('id', 'submitNewProject');
         submitButton.textContent = 'Submit';
+
+        // button to remove the form
+        let cancelFormButton = document.createElement('button');
+        cancelFormButton.textContent = 'Cancel';
+        cancelFormButton.addEventListener('click', () => {
+            removeProjectForm();
+        })
         
-        
-        form.append(title, deadline, submitButton);
+        form.append(title, deadline, submitButton, cancelFormButton);
         
         // get the element that contains the header of the page
         let appName = document.getElementById('appName');
@@ -65,8 +72,18 @@ function submitNewProject(title, deadline) {
 
         // create a new project, remove new project form, and display the new project on the page
         
+        // need the hashed title to not start with number
         let titleForHash = titleText.replace(/\s/g, "");
-        let project = createNewProject(titleText, deadlineText, titleForHash);
+        let hashCode = hash.sha256().update(titleForHash).digest('hex');
+        let hashSplit = hashCode.split('');
+        let trueValue = parseInt(hashSplit[0]);
+        if(0 <= trueValue <=9) {
+            hashSplit.shift();
+            hashSplit.unshift('a');
+            hashCode = hashSplit.join('');
+        };
+
+        let project = createNewProject(titleText, deadlineText, hashCode);
         
         
         removeProjectForm();

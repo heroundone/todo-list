@@ -7,12 +7,12 @@ import {addToDoToLocalStorage} from './local-storage.js';
 function addToDoEventListener(submitButton) {
     // get submit button
     submitButton.addEventListener('click', (e) => {
-        let key = e.target.parentElement.parentElement.parentElement.id;
-        let description = document.querySelector(`#${key} .description`).value;
+        let key = e.target.parentElement.parentElement.parentElement.getAttribute('data-key');
+        let description = document.querySelector(`[data-key=${key}] .description`).value;
         if (!(checkTextContent(description))) {
             return;
         };
-        let deadline = document.querySelector(`[id=${CSS.escape(key)}] .deadline`).value;
+        let deadline = document.querySelector(`[data-key=${key}] .deadline`).value;
         if (!(checkTextContent(deadline))) {
             return;
         };
@@ -20,7 +20,7 @@ function addToDoEventListener(submitButton) {
             alert('Please make sure your date entry matches the expected formatting.')
             return;
         }
-        let priority = document.querySelector(`[id=${CSS.escape(key)}] .priority`).value;
+        let priority = document.querySelector(`[data-key=${key}] .priority`).value;
         if (!(checkTextContent(priority))) {
             return;
         };
@@ -33,12 +33,20 @@ function addToDoEventListener(submitButton) {
     });
 };
 
+// when button is clicked removeToDoForm is called
+function cancelToDoForm(cancelFormButton) {
+    cancelFormButton.addEventListener('click', (e) => {
+        let key = e.target.parentElement.parentElement.parentElement.getAttribute('data-key');
+        removeToDoForm(key);
+    })
+}
+
 // triggered when 'add new to-do' button is clicked
 function todoFormEventListener(todoButton) {
     todoButton.addEventListener('click', (e) => {
         // first check if the form is already displayed, if so do not add another form to it
         let key = getKey(e);
-        let form = document.querySelector(`#${key} .form`);
+        let form = document.querySelector(`[data-key=${key}] .form`);
         if(form.firstChild != null) {
             return;
         }
@@ -72,4 +80,4 @@ function checkDeadline(deadline) {
 
 // a show details/hide details button for displaying and minimizing todos within a project!!!
 
-export {addToDoEventListener, todoFormEventListener, checkTextContent, checkDeadline}
+export {addToDoEventListener, todoFormEventListener, checkTextContent, checkDeadline, cancelToDoForm}

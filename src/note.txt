@@ -1,7 +1,9 @@
 
-remove project and remove todo
+
+
 expand and hide project details(todos will be hidden unless expand button is clicked)
 
 based on priority, projects have different border colors
 
-checklist for todo items. button or div that when clicked is filled with an x for text content, or checkmark image
+
+

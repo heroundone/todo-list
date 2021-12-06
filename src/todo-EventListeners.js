@@ -2,6 +2,7 @@ import {getKey} from './DOM-manipulation.js';
 import {createToDo} from './createToDos.js';
 import {createToDoForm, addToProject, removeToDoForm} from './DOM-manipulation.js';
 import {addToDoToLocalStorage} from './local-storage.js';
+let hash = require('hash.js');
 
 // triggers when submit button within 'add new to-do' form is clicked
 function addToDoEventListener(submitButton) {
@@ -25,8 +26,20 @@ function addToDoEventListener(submitButton) {
             return;
         };
 
+        // create a unique id for each todo, hashCode will be used for the identifier
+        let hashCode = hash.sha256().update(description + deadline + priority).digest('hex');
+        let hashSplit = hashCode.split('');
+        let trueValue = parseInt(hashSplit[0]);
+
+        // if the int is not between 0 and 9 inclusive, then the int corresponds to a letter
+        if(0 <= trueValue <=9) {
+            hashSplit.shift();
+            hashSplit.unshift('a');
+            hashCode = hashSplit.join('');
+        };
+
         // create a new todo object, add it to the project to be displayed, delete the form
-        let newToDo = createToDo(description, deadline, priority, key);
+        let newToDo = createToDo(description, deadline, priority, key, hashCode);
         removeToDoForm(key);
         addToProject(newToDo);
         addToDoToLocalStorage();

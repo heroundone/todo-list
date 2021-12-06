@@ -31,6 +31,18 @@
     margin-bottom: 10px;
 }
 
+.projectContainer {
+    display: flex;
+    justify-content: space-between;
+}
+
+.checkbox {
+    width:12px;
+    height:15px;
+    text-align: center;
+    background-color: yellow;
+}
+
 .form {
     display: flex;
 }

@@ -23,7 +23,6 @@ function addToDoToLocalStorage() {
 function extractArraysLocalStorage() {
     let currentProjects = JSON.parse(localStorage.getItem('projects'));
     if (currentProjects !== null) {
-        console.log(currentProjects);
         for(let i = currentProjects.length - 1; i >= 0; i--) {
             let project = currentProjects[i];
             projects.projectsArray.unshift(project);
@@ -32,7 +31,6 @@ function extractArraysLocalStorage() {
 
     let currentToDos = JSON.parse(localStorage.getItem('todos'));
     if(currentToDos !== null) {
-        console.log(currentToDos);
         for(let i = currentToDos.length - 1; i >= 0; i--) {
             let todo = currentToDos[i];
             todos.todoArray.unshift(todo);

@@ -5,18 +5,16 @@ import * as storage from './local-storage.js';
 import {createProjectHtml, addToProject} from './DOM-manipulation.js'
 import {projects, todos} from './modules.js';
 import {createNewProject} from './createProjects.js';
-import {addProjectEventListener} from './project-EventListeners.js'
+import {addProjectEventListener, deleteProjects, deleteAllProjects} from './project-EventListeners.js'
 
 
-// main.js will handle initial load of page, and check local storage, if local storage is populated then projects and todos 
-// will be appended to the page
-
-// check if local storage contains projects or to-do's
+// check if local storage contains projects or to-do's, if so populate the page with them
 if(storage.checkLocalStorage()) {
     console.log(localStorage);
-
-    // set up the add a project button 
+    // set up sidebar button event listeners
     addProjectEventListener();
+    deleteProjects();
+    deleteAllProjects();
 
     // retrieve the projects and their todos
     storage.extractArraysLocalStorage();
@@ -36,11 +34,13 @@ if(storage.checkLocalStorage()) {
         };
     };
 
+
     
 }
+// nothing in local storage so make a general project to start with for user
 else {
     // create a project object for general tasks, obtain hash first, check if hash starts with a number
-
+    console.log(localStorage);
     // obtain hash of project title, then change first value to an int
     let hashCode = hash.sha256().update('General Tasks').digest('hex');
     let hashSplit = hashCode.split('');
@@ -58,12 +58,13 @@ else {
     // display the general project on the webpage
     createProjectHtml(general);
     
-    // add an event listener to add project button
+    
+    // set up event listeners for sidebar buttons
     addProjectEventListener();
+    deleteProjects();
+    deleteAllProjects();
 
     // store general in local storage
     storage.addProjectToLocalStorage();
     
-    console.log(localStorage);
-    console.log(projects.projectsArray);
 }

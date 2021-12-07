@@ -1,3 +1,4 @@
+import { todos } from './modules.js';
 import {addToDoEventListener, todoFormEventListener, cancelToDoForm} from './todo-EventListeners.js';
 
 function createToDoForm(e) {
@@ -62,7 +63,7 @@ function addToProject(newToDo) {
     let item = document.createElement('li');
     item.setAttribute('data-key', newToDo.identifier)
 
-    // retrieve the 'ul' to append item to
+    // retrieve the 'ul' to append items to
     let list = document.querySelector(`[data-key=${newToDo.key}] .todoList`);
 
     // add todo info to item, create div to do so
@@ -75,6 +76,24 @@ function addToProject(newToDo) {
             item.appendChild(span);
         };
     };
+
+    // create a button that will allow for removal of the todo; its id matches the todo object's identifier
+    let button = document.createElement('button');
+    button.setAttribute('id', newToDo.identifier);
+    button.textContent = 'Remove ToDo';
+    item.appendChild(button);
+
+    button.addEventListener('click', (e) => {
+        // remove todo from local storage
+        let targetIdentifier = e.target.getAttribute('id');
+        let newToDosArray = todos.todoArray.filter(todo => todo.identifier != targetIdentifier);
+        localStorage.setItem('todos', JSON.stringify(newToDosArray));
+
+        //remove todo from page
+        let todo = e.target.parentElement;
+        todo.remove();
+        console.log(localStorage);
+    })
 
     // append item to list
     list.appendChild(item);

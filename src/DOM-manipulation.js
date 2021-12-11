@@ -6,7 +6,7 @@ function createToDoForm(e) {
     let key = getKey(e);
 
     let descriptionInput = document.createElement('textarea');
-    descriptionInput.setAttribute('rows', '4');
+    descriptionInput.setAttribute('rows', '2');
     descriptionInput.setAttribute('cols', '50');
     descriptionInput.setAttribute('class', 'description');
 
@@ -16,6 +16,7 @@ function createToDoForm(e) {
     deadlineInput.setAttribute('placeholder', 'mm/dd/yyyy')
 
     let priorityInput = document.createElement('input');
+    priorityInput.setAttribute('placeholder', 'priority(1 - 5)')
     priorityInput.setAttribute('type', 'text');
     priorityInput.setAttribute('class', 'priority');
 
@@ -110,7 +111,7 @@ function createProjectHtml(project) {
 
     // span elements to contain project title and deadline
     let titleSpan = createSpan(project.title);
-    let deadlineSpan = createSpan(project.deadline);
+    let deadlineSpan = createSpan('Due:' + ' ' + project.deadline);
 
     // div for the span elements, for flexbox styling
     let spanDiv = document.createElement('div');

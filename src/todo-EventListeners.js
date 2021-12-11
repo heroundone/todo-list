@@ -9,10 +9,12 @@ function addToDoEventListener(submitButton) {
     // get submit button
     submitButton.addEventListener('click', (e) => {
         let key = e.target.parentElement.parentElement.parentElement.getAttribute('data-key');
+
         let description = document.querySelector(`[data-key=${key}] .description`).value;
         if (!(checkTextContent(description))) {
             return;
         };
+
         let deadline = document.querySelector(`[data-key=${key}] .deadline`).value;
         if (!(checkTextContent(deadline))) {
             return;
@@ -21,6 +23,7 @@ function addToDoEventListener(submitButton) {
             alert('Please make sure your date entry matches the expected formatting.')
             return;
         }
+        
         let priority = document.querySelector(`[data-key=${key}] .priority`).value;
         if (!(checkTextContent(priority))) {
             return;
